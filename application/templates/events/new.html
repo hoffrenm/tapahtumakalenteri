@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+  
+{% block body %}
+<form method="POST" action="{{ url_for('events_create') }}">
+    <label for=name>Tapahtuman nimi</label>
+    <input type="text" name="name" />
+    <br>
+
+    <label for=location>Tapahtuman sijainti</label>
+    <input type="text" name="location" />
+    <br>
+
+    <label for=attendee_max>Osallistujamäärä korkeintaan</label>
+    <input type="number" name="attendee_max" />
+    <br>
+
+    <label for=attendee_min>Osallistujamäärä, jotta tapahtuma järjestetään (valinnainen)</label>
+    <input type="number" name="attendee_min" />
+    <br>
+
+    <label for=date_time>Aika</label>
+    <input type="date" name="date_time" />
+    <br>
+
+    <input type="submit" value="Add a new event"/>
+</form>
+{% endblock %}

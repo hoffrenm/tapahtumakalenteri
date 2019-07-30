@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Tapahtuma</th>
+      <th>Sijainti</th>
+      <th>Osallistujia</th>
+    </tr>
+    {% for event in events %}
+    <tr>
+      <td>{{ event.name }}</td>
+      <td>{{ event.location }}</td>
+      <td>{{ event.attendandees }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
