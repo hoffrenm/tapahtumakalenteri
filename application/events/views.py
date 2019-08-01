@@ -2,7 +2,7 @@ from application import app, db
 from flask import render_template, request, redirect, url_for
 from application.events.models import Event
 from application.events.forms import EventForm
-import datetime
+from datetime import datetime
 
 @app.route("/events/new/")
 def events_form():
@@ -21,7 +21,11 @@ def events_create():
 
     e = Event(form.name.data, form.location.data)
 
-    e.date_time = datetime.datetime.combine(form.date.data, form.time.data)
+    print("#!#!#!#", form.time.data)
+
+    e.date_time = datetime.combine(form.date.data, form.time.data)
+
+    print("combined: ", datetime.combine(form.date.data, form.time.data))
 
     db.session().add(e)
     db.session().commit()

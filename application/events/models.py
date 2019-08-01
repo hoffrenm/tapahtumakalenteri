@@ -8,7 +8,9 @@ class Event(db.Model):
 
     name = db.Column(db.String(144), nullable=False)
     location = db.Column(db.String(144), nullable=False)
-    date_time = db.Column(db.DateTime, nullable=True)
+    date_time = db.Column(db.DateTime, nullable=False)
+    # date = db.Column(db.Date, nullable=False)
+    # time = db.Column(db.Time, nullable=False)
     attendandees = db.Column(db.Integer, default=0)
     attendee_max = db.Column(db.Integer, nullable=True)
     attendee_min = db.Column(db.Integer, nullable=True)
