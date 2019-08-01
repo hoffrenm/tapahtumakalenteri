@@ -1,12 +1,13 @@
-{% extends "layout.html" %}
-
-{% block body %}
+{% extends "layout.html" %} {% block body %}
+<div class="container">
   <table>
     <tr>
       <th>Tapahtuma</th>
       <th>Sijainti</th>
       <th>Osallistujia</th>
       <th>Ajankohta</th>
+      <th>Max</th>
+      <th>Min</th>
     </tr>
     {% for event in events %}
     <tr>
@@ -14,7 +15,10 @@
       <td>{{ event.location }}</td>
       <td>{{ event.attendandees }}</td>
       <td>{{ event.date_time }}</td>
+      <td>{{ event.attendee_max }}</td>
+      <td>{{ event.attendee_min }}</td>
     </tr>
     {% endfor %}
   </table>
+</div>
 {% endblock %}
