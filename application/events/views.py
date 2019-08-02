@@ -1,7 +1,7 @@
 from application import app, db
 from flask import render_template, request, redirect, url_for
 from application.events.models import Event
-from application.events.forms import EventForm
+from application.events.forms import EventForm, EventModifyForm
 from datetime import datetime
 
 @app.route("/events/new/")
@@ -21,13 +21,23 @@ def events_create():
 
     e = Event(form.name.data, form.location.data)
 
-    print("#!#!#!#", form.time.data)
-
     e.date_time = datetime.combine(form.date.data, form.time.data)
-
-    print("combined: ", datetime.combine(form.date.data, form.time.data))
+    e.attendee_max = form.attendee_max.data
+    e.attendee_min = form.attendee_min.data
 
     db.session().add(e)
     db.session().commit()
   
     return redirect(url_for("events_index"))
+
+# Show prefilled modification form
+@app.route("/events/modify/<event_id>", methods=["GET"])
+def event_show_modify(event_id):
+    event = Event.query.get(event_id)
+
+    return render_template("events/modify.html", form = EventModifyForm(), event = event)
+
+@app.route("/events/modify/<event_id>", methods=["POST"])
+def event_modify(event_id):
+    return "lol"
+    

@@ -8,6 +8,7 @@
       <th>Ajankohta</th>
       <th>Max</th>
       <th>Min</th>
+      <th>Muokkaa</th>
     </tr>
     {% for event in events %}
     <tr>
@@ -17,6 +18,7 @@
       <td>{{ event.date_time }}</td>
       <td>{{ event.attendee_max }}</td>
       <td>{{ event.attendee_min }}</td>
+      <td><a href="events/modify/{{ event.id }}">Muokkaa</a></td>
     </tr>
     {% endfor %}
   </table>

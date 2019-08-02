@@ -1,9 +1,9 @@
 {% extends "layout.html" %} {% block body %}
 <div class="container">
-  <form method="POST" action="{{ url_for('events_create') }}">
+  <form method="POST" action="{{ url_for('event_modify', event_id=event.id) }}">
     <div class="form-group">
       {{ form.name.label }}
-      {{ form.name }}
+      {{ form.name(value=event.name) }}
       <ul>
         {% for error in form.name.errors %}
         <li>{{ error }}</li>
@@ -13,7 +13,7 @@
 
     <div class="form-group">
       {{ form.location.label }}
-      {{ form.location }}
+      {{ form.location(value=event.location) }}
       <ul>
         {% for error in form.location.errors %}
         <li>{{ error }}</li>
@@ -41,9 +41,16 @@
       </ul>
     </div>
 
+    <small>
+      <p>{{ event.name }} - {{ event.location }} - {{ event.date_time }}</p>
+      <p>Tapahtuma luotu {{ event.date_created }}</p>
+      <p>Viimeksi muokattu {{ event.date_modified }}</p>
+    </small>
+
     <div>
-      <input type="submit" value="Lisää tapahtuma" />
+      <input type="submit" value="Tallenna tiedot" />
     </div>
   </form>
 </div>
+
 {% endblock %}
