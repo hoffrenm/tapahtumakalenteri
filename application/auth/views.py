@@ -24,3 +24,7 @@ def auth_login():
 def auth_logout():
     logout_user()
     return redirect(url_for("index"))
+
+@app.route("/account")
+def account_create():
+    return "Coming soon"
