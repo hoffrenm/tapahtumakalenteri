@@ -31,11 +31,31 @@
       </ul>
     </div>
 
-    <div>
+    <div class="form-group">
       {{ form.date.label }}
       {{ form.date }}
       <ul>
         {% for error in form.date.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="form-group">
+      {{ form.attendee_max.label }}
+      {{ form.attendee_max(value=0) }}
+      <ul>
+        {% for error in form.attendee_max.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="form-group">
+      {{ form.attendee_min.label }}
+      {{ form.attendee_min(value=0) }}
+      <ul>
+        {% for error in form.attendee_min.errors %}
         <li>{{ error }}</li>
         {% endfor %}
       </ul>
