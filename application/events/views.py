@@ -30,14 +30,38 @@ def events_create():
   
     return redirect(url_for("events_index"))
 
-# Show prefilled modification form
-@app.route("/events/modify/<event_id>", methods=["GET"])
-def event_show_modify(event_id):
+# pass event to form so it can be prefilled
+@app.route("/events/modify/<int:event_id>", methods=["GET"])
+def event_edit(event_id):
     event = Event.query.get(event_id)
+    
+    # format time and date for prefilled form
+    event.time = event.date_time.strftime('%H:%M')
+    event.date = event.date_time.strftime('%Y-%m-%d')
 
     return render_template("events/modify.html", form = EventModifyForm(), event = event)
 
-@app.route("/events/modify/<event_id>", methods=["POST"])
-def event_modify(event_id):
-    return "lol"
+
+@app.route("/events/modify/<int:event_id>", methods=["POST"])
+def event_update(event_id):
+    form = EventModifyForm(request.form)
+
+    event = Event.query.get(event_id)
+    
+    # format time and date for prefilled form
+    event.time = event.date_time.strftime('%H:%M')
+    event.date = event.date_time.strftime('%Y-%m-%d')
+
+    if not form.validate():
+        return render_template("events/modify.html", form = form, event = event)
+
+    event.name = form.name.data
+    event.location = form.location.data
+    event.date_time = datetime.combine(form.date.data, form.time.data)
+    event.attendee_max = form.attendee_max.data
+    event.attendee_min = form.attendee_min.data
+
+    db.session.commit()
+
+    return redirect(url_for("events_index"))
     

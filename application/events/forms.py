@@ -8,7 +8,7 @@ class EventForm(FlaskForm):
     time = TimeField("Kellonaika", format='%H:%M', render_kw={"class": "form-control"})
     date = DateField("Päivämäärä", format='%Y-%m-%d', render_kw={"class": "form-control"})
     attendee_max = IntegerField("Maksimi osallistujamäärä (valinnainen)", render_kw={"class": "form-control"})
-    attendee_min = IntegerField("Minimi osallistujamäärä, jotta tapahtuma järjestetään (valinnainen", render_kw={"class": "form-control"})
+    attendee_min = IntegerField("Minimi osallistujamäärä, jotta tapahtuma järjestetään (valinnainen)", render_kw={"class": "form-control"})
 
     class Meta:
         csrf = False
@@ -19,7 +19,7 @@ class EventModifyForm(FlaskForm):
     time = TimeField("Kellonaika", format='%H:%M', render_kw={"class": "form-control"})
     date = DateField("Päivämäärä", format='%Y-%m-%d', render_kw={"class": "form-control"})
     attendee_max = IntegerField("Maksimi osallistujamäärä (valinnainen)", render_kw={"class": "form-control"})
-    attendee_min = IntegerField("Minimi osallistujamäärä, jotta tapahtuma järjestetään (valinnainen", render_kw={"class": "form-control"})
+    attendee_min = IntegerField("Minimi osallistujamäärä, jotta tapahtuma järjestetään (valinnainen)", render_kw={"class": "form-control"})
 
     class Meta:
         csrf = False

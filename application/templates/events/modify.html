@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block body %}
 <div class="container">
-  <form method="POST" action="{{ url_for('event_modify', event_id=event.id) }}">
+  <form method="POST" action="{{ url_for('event_update', event_id=event.id) }}">
     <div class="form-group">
       {{ form.name.label }}
       {{ form.name(value=event.name) }}
@@ -23,7 +23,7 @@
 
     <div class="form-group">
       {{ form.time.label }}
-      {{ form.time }}
+      {{ form.time(value=event.time) }}
       <ul>
         {% for error in form.time.errors %}
         <li>{{ error }}</li>
@@ -31,9 +31,9 @@
       </ul>
     </div>
 
-    <div>
+    <div class="form-group">
       {{ form.date.label }}
-      {{ form.date }}
+      {{ form.date(value=event.date) }}
       <ul>
         {% for error in form.date.errors %}
         <li>{{ error }}</li>
@@ -41,8 +41,28 @@
       </ul>
     </div>
 
+    <div class="form-group">
+      {{ form.attendee_max.label }}
+      {{ form.attendee_max(value=event.attendee_max) }}
+      <ul>
+        {% for error in form.attendee_max.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="form-group">
+      {{ form.attendee_min.label }}
+      {{ form.attendee_min(value=event.attendee_min) }}
+      <ul>
+        {% for error in form.attendee_min.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
     <small>
-      <p>{{ event.name }} - {{ event.location }} - {{ event.date_time }}</p>
+      <p>{{ event.name }}, {{ event.location }}, {{ event.date_time }}</p>
       <p>Tapahtuma luotu {{ event.date_created }}</p>
       <p>Viimeksi muokattu {{ event.date_modified }}</p>
     </small>

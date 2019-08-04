@@ -12,8 +12,8 @@ class Event(db.Model):
     # date = db.Column(db.Date, nullable=False)
     # time = db.Column(db.Time, nullable=False)
     attendandees = db.Column(db.Integer, default=0)
-    attendee_max = db.Column(db.Integer, nullable=True)
-    attendee_min = db.Column(db.Integer, nullable=True)
+    attendee_max = db.Column(db.Integer, default=0)
+    attendee_min = db.Column(db.Integer, default=0)
 
     def __init__(self, name, location):
         self.name = name
