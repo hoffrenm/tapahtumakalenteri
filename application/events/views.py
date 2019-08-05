@@ -4,15 +4,15 @@ from application.events.models import Event
 from application.events.forms import EventForm, EventModifyForm
 from datetime import datetime
 
-@app.route("/events/new/")
-def events_form():
-    return render_template("events/new.html", form = EventForm())
-
 @app.route("/events", methods=["GET"])
 def events_index():
     return render_template("events/list.html", events = Event.query.all())
 
-@app.route("/events/", methods=["POST"])
+@app.route("/events/new")
+def events_form():
+    return render_template("events/new.html", form = EventForm())
+
+@app.route("/events", methods=["POST"])
 def events_create():
     form = EventForm(request.form)
 
