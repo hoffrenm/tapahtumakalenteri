@@ -4,15 +4,26 @@ from application.events.models import Event
 from application.events.forms import EventForm, EventModifyForm
 from datetime import datetime
 
-@app.route("/events", methods=["GET"])
+@app.route("/events/show/<int:event_id>", methods=["GET"])
+def event_show(event_id):
+    event = Event.query.get(event_id)
+    return render_template("events/event.html", event = event)
+
+@app.route("/events/join/<int:event_id>", methods=["POST"])
+def event_join(event_id):
+    event = db.query.get(event_id)
+
+    # JATKA TÄSTÄ
+
+@app.route("/events/", methods=["GET"])
 def events_index():
     return render_template("events/list.html", events = Event.query.all())
 
-@app.route("/events/new")
+@app.route("/events/new/")
 def events_form():
     return render_template("events/new.html", form = EventForm())
 
-@app.route("/events", methods=["POST"])
+@app.route("/events/", methods=["POST"])
 def events_create():
     form = EventForm(request.form)
 
@@ -30,7 +41,6 @@ def events_create():
   
     return redirect(url_for("events_index"))
 
-# pass event to form so it can be prefilled
 @app.route("/events/modify/<int:event_id>", methods=["GET"])
 def event_edit(event_id):
     event = Event.query.get(event_id)

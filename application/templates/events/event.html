@@ -1,0 +1,15 @@
+{% extends "layout.html" %} {% block body %}
+<div class="container">
+  <h2>{{ event.name }}</h2>
+  <p>Aika: {{ event.date_time }}</p>
+  <p>Paikka: {{ event.location }}</p>
+  <p>osallistujia {{ event.attendees }}
+      {% if event.attendee_max > 0%}
+      / {{ event.attendee_max }}
+      {% endif %}
+  </p>
+  <form type="POST">
+      <button type="submit" class="btn btn-success">Ilmoittaudu</button>
+  </form>
+</div>
+{% endblock %}
