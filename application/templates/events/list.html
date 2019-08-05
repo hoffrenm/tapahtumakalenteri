@@ -18,7 +18,7 @@
       <td>{{ event.date_time }}</td>
       <td>{{ event.attendee_max }}</td>
       <td>{{ event.attendee_min }}</td>
-      <td><a href="events/modify/{{ event.id }}">Muokkaa</a></td>
+      <td><a href="{{ url_for('event_edit', event_id=event.id) }}">Muokkaa</a></td>
     </tr>
     {% endfor %}
   </table>
