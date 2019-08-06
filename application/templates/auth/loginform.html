@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div class=container>
+<div>
     {{ error }}
     <form method="POST" action="{{ url_for('auth_login') }}">
         <div class="form-group">
