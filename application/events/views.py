@@ -1,7 +1,11 @@
 from application import app, db
-from flask import render_template, request, redirect, url_for
 from application.events.models import Event
+from application.auth.models import User
 from application.events.forms import EventForm, EventModifyForm
+
+from flask import render_template, request, redirect, url_for
+from flask_login import login_required, current_user
+
 from datetime import datetime
 
 @app.route("/events/show/<int:event_id>", methods=["GET"])
@@ -9,11 +13,25 @@ def event_show(event_id):
     event = Event.query.get(event_id)
     return render_template("events/event.html", event = event)
 
-@app.route("/events/join/<int:event_id>", methods=["POST"])
+@app.route("/events/join/<event_id>", methods=["POST"])
 def event_join(event_id):
-    event = db.query.get(event_id)
+    event = Event.query.get(event_id)
+    account = User.query.get(current_user.id)
 
-    # JATKA TÄSTÄ
+    # check if event has limit and has space
+    if event.attendee_max > 0:
+        if event.attendees >= event.attendee_max:
+            return "Tapahtumassa ei ollut tilaa"
+
+    # check if user has already joined an event
+    if event in account.attending:
+        return "Olet jo ilmottautunut"
+
+    event.participants.append(account)
+
+    db.session.commit()
+
+    return redirect(url_for("events_index"))
 
 @app.route("/events/", methods=["GET"])
 def events_index():

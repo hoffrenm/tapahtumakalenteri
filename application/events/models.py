@@ -1,5 +1,10 @@
 from application import db
 
+attends = db.Table('participation',
+    db.Column('event_id', db.Integer, db.ForeignKey('event.id')),
+    db.Column('account_id', db.Integer, db.ForeignKey('account.id'))
+)
+
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
@@ -13,7 +18,8 @@ class Event(db.Model):
     attendee_max = db.Column(db.Integer, default=0)
     attendee_min = db.Column(db.Integer, default=0)
 
+    participants = db.relationship("User", secondary=attends, backref=db.backref("attending", lazy="dynamic"))
+
     def __init__(self, name, location):
         self.name = name
         self.location = location
-
