@@ -8,7 +8,7 @@
       / {{ event.attendee_max }}
       {% endif %}
   </p>
-  <form type="POST">
+  <form method="POST" action="{{ url_for('event_join', event_id=event.id) }}">
       <button type="submit" class="btn btn-success">Ilmoittaudu</button>
   </form>
 </div>
