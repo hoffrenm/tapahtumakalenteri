@@ -49,6 +49,4 @@ def register():
     db.session.add(newAccount)
     db.session.commit()
 
-    print("Toimii")
-
     return redirect(url_for("events_index"))
