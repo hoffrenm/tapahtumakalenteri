@@ -3,7 +3,7 @@ from application.events.models import Event
 from application.auth.models import User
 from application.events.forms import EventForm, EventModifyForm
 
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from datetime import datetime
@@ -13,7 +13,9 @@ def event_show(event_id):
     event = Event.query.get(event_id)
     return render_template("events/event.html", event = event)
 
+
 @app.route("/events/join/<event_id>", methods=["POST"])
+@login_required
 def event_join(event_id):
     event = Event.query.get(event_id)
     account = User.query.get(current_user.id)
@@ -25,6 +27,7 @@ def event_join(event_id):
 
     # check if user has already joined an event
     if event in account.attending:
+        flash("Olet jo ilmottautunut")
         return "Olet jo ilmottautunut"
 
     event.participants.append(account)
@@ -38,10 +41,12 @@ def events_index():
     return render_template("events/list.html", events = Event.query.all())
 
 @app.route("/events/new/")
+@login_required
 def events_form():
     return render_template("events/new.html", form = EventForm())
 
 @app.route("/events/", methods=["POST"])
+@login_required
 def events_create():
     form = EventForm(request.form)
 
@@ -60,6 +65,7 @@ def events_create():
     return redirect(url_for("events_index"))
 
 @app.route("/events/modify/<int:event_id>", methods=["GET"])
+@login_required
 def event_edit(event_id):
     event = Event.query.get(event_id)
     
@@ -71,6 +77,7 @@ def event_edit(event_id):
 
 
 @app.route("/events/modify/<int:event_id>", methods=["POST"])
+@login_required
 def event_update(event_id):
     form = EventModifyForm(request.form)
 
