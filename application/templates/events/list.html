@@ -1,44 +1,17 @@
 {% extends "layout.html" %} {% block body %}
+
 <div>
-  <div class="row">
-    {% for event in events %}
-      <div class="card">
-        <div class="card-header">
-          {{ event.name }}
-        </div>
-        <div class="card-body">
-          {{ event.location}}
-          <a href="{{ url_for('event_show', event_id=event.id) }}" class="btn btn-primary stretched-link"></a>
-        </div>
-        <div class="card-footer">
-          {{ event.date_time }}
-        </div>
-      </div>
-    {% endfor %}
+  <h2>Tapahtumat</h2>
+  {% for event in events %}
+  <div class="row p-1 m-1 bg-light position-relative border rounded">
+    <div class="col-1 p-1 m-1">Kuva</div>
+    <div class="col p-1 m-1">{{ event.name }}</div>
+    <div class="col p-1 m-1">{{ event.location }}</div>
+    <div class="col p-1 m-1">{{ event.date_time }}</div>
+    <button type="button" class="btn btn-success">Katso</button>
+    <a class="stretched-link" href="{{ url_for('event_show', event_id=event.id) }}"></a>
   </div>
+  {% endfor %}
 </div>
 
-  <table>
-    <tr>
-      <th>Tapahtuma</th>
-      <th>Sijainti</th>
-      <th>Osallistujia</th>
-      <th>Ajankohta</th>
-      <th>Max</th>
-      <th>Min</th>
-      <th>Muokkaa</th>
-    </tr>
-    {% for event in events %}
-    <tr>
-      <td>{{ event.name }}</td>
-      <td>{{ event.location }}</td>
-      <td>{{ event.attendandees }}</td>
-      <td>{{ event.date_time }}</td>
-      <td>{{ event.attendee_max }}</td>
-      <td>{{ event.attendee_min }}</td>
-      <td><a href="{{ url_for('event_edit', event_id=event.id) }}">Muokkaa</a></td>
-    </tr>
-    {% endfor %}
-  </table>
-</div>
 {% endblock %}
