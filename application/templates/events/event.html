@@ -1,15 +1,57 @@
 {% extends "layout.html" %} {% block body %}
-<div class="container">
-  <h2>{{ event.name }}</h2>
+<div
+  class="container"
+  style="width: 60%;background:lightgrey;border-color:black;border-width: 3px"
+>
+  <div class="row justify-content-center">
+    <div class="col-*">
+      <h1>{{ event.name }}</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-start">
+    <div class="col-2"></div>
+    <div class="col-*">
+      <p>Sijainti</p>
+    </div>
+    <div class="col-* border rounded" style="background-color: white">
+      {{ event.location }}
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-* m-1 p-1" role="group">
+      <button type="button" class="btn btn-lg btn-success">
+        Osallistu
+      </button>
+    </div>
+    <div class="col-* m-1 p-1">
+      <button type="button" class="btn btn-lg btn-primary">
+        Muokkaa
+      </button>
+    </div>
+    <div class="col-* m-1 p-1">
+      <button type="button" class="btn btn-lg btn-danger">
+        Poista
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- <div>
+
   <p>Aika: {{ event.date_time }}</p>
   <p>Paikka: {{ event.location }}</p>
-  <p>osallistujia {{ event.attendees }}
-      {% if event.attendee_max > 0%}
-      / {{ event.attendee_max }}
-      {% endif %}
+  <p>
+    osallistujia {{ event.attendees }} {% if event.attendee_max > 0%} /
+    {{ event.attendee_max }}
+    {% endif %}
   </p>
-  <form method="POST" action="{{ url_for('event_join', event_id=event.id) }}">
+  <div>
+    <form method="POST" action="{{ url_for('event_join', event_id=event.id) }}">
       <button type="submit" class="btn btn-success">Ilmoittaudu</button>
-  </form>
-</div>
+    </form>
+    <a href="{{ url_for('event_edit', event_id=event.id) }}"" class="btn btn-primary">Muokkaa</a>
+  </div>
+</div> -->
 {% endblock %}
