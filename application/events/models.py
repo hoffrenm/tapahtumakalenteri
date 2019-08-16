@@ -1,5 +1,7 @@
 from application import db
 
+from sqlalchemy.sql import text
+
 attends = db.Table('participation',
     db.Column('event_id', db.Integer, db.ForeignKey('event.id')),
     db.Column('account_id', db.Integer, db.ForeignKey('account.id'))
@@ -23,3 +25,20 @@ class Event(db.Model):
     def __init__(self, name, location):
         self.name = name
         self.location = location
+
+    def find_comments_for_event(event_id):
+        stmt = text("SELECT Account.name, Comment.content, Comment.date_created"
+                    " FROM Comment"
+                    " LEFT JOIN Account ON Comment.account_id = Account.id"
+                    " WHERE Comment.event_id = :event_id"
+                    " ORDER BY Comment.date_created ASC").params(event_id=event_id)
+        
+        res = db.engine.execute(stmt)
+
+        response = []
+
+        for row in res:
+            response.append({"name":row[0], "content":row[1], "date":row[2]})
+
+        return response
+
