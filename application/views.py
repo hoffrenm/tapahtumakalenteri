@@ -3,5 +3,5 @@ from application import app
 
 @app.route("/")
 def index():
-    return redirect(url_for("events_index"))
+    return redirect(url_for("events_all"))
     

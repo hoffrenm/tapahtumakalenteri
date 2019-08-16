@@ -1,7 +1,26 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block body %}
 
-{% block body %}
-  <p>
-    Hello world!
-  </p>
+<div>
+  <h1>Tulevia tapahtumia</h1>
+  <div class="row">
+    {% for event in events %}
+    <div class="card">
+      <div class="card-header">
+        {{ event.name }}
+      </div>
+      <div class="card-body">
+        {{ event.location }}
+        <a
+          href="{{ url_for('event_show', event_id=event.id) }}"
+          class="btn btn-primary stretched-link"
+        ></a>
+      </div>
+      <div class="card-footer">
+        {{ event.date_time }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
