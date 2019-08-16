@@ -1,18 +1,22 @@
 from application import app, db
+
 from application.events.models import Event
-from application.auth.models import User
 from application.events.forms import EventForm, EventModifyForm
+from application.comments.models import Comment
+from application.comments.forms import CommentForm
+from application.auth.models import User
 
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from datetime import datetime
 
-@app.route("/events/show/<int:event_id>", methods=["GET"])
+@app.route("/events/show/<event_id>", methods=["GET"])
 def event_show(event_id):
     event = Event.query.get(event_id)
-    return render_template("events/event.html", event = event)
+    comments = Event.find_comments_for_event(event_id)
 
+    return render_template("events/event.html", event = event, comments=comments, form=CommentForm())
 
 @app.route("/events/join/<event_id>", methods=["POST"])
 @login_required
@@ -27,23 +31,33 @@ def event_join(event_id):
 
     # check if user has already joined an event
     if event in account.attending:
-        flash("Olet jo ilmottautunut")
         return "Olet jo ilmottautunut"
 
     event.participants.append(account)
 
-    db.session.commit()
+    db.session().commit()
 
     return redirect(url_for("events_index"))
 
+# TODO landing page view
 @app.route("/events/", methods=["GET"])
 def events_index():
+    return render_template("index.html", events = Event.query.all())
+
+# TODO search page view
+@app.route("/events/all/", methods=["GET"])
+def events_all():
     return render_template("events/list.html", events = Event.query.all())
 
 @app.route("/events/new/")
 @login_required
 def events_form():
     return render_template("events/new.html", form = EventForm())
+
+@app.route("/events/delete/<event_id>")
+@login_required
+def event_delete(event_id):
+    return redirect(url_for("events_all"))
 
 @app.route("/events/", methods=["POST"])
 @login_required
@@ -83,6 +97,9 @@ def event_update(event_id):
 
     event = Event.query.get(event_id)
     
+    if not event:
+        return redirect(url_for("events_index"))
+
     # format time and date for prefilled form
     event.time = event.date_time.strftime('%H:%M')
     event.date = event.date_time.strftime('%Y-%m-%d')
@@ -96,7 +113,25 @@ def event_update(event_id):
     event.attendee_max = form.attendee_max.data
     event.attendee_min = form.attendee_min.data
 
-    db.session.commit()
+    db.session().commit()
 
     return redirect(url_for("events_index"))
+
+@app.route("/events/comment/<event_id>", methods=["POST"])
+def send_comment(event_id):
+    form = CommentForm(request.form)
+    event = Event.query.get(event_id)
+
+    if not form.validate():
+        return render_template("events/event.html", event = event, form=form)
+
+    print("EVENT ID: ", event.id)
+    print("USER ID: ", current_user.id)
+
+    comment = Comment(form.content.data, event.id, current_user.id)
+
+    db.session().add(comment)
+    db.session().commit()
+    
+    return redirect(url_for('event_show', event_id=event.id))
     
