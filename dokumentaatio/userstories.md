@@ -11,10 +11,11 @@ Pääkäyttäjän toiminnot:
 
 ## Käyttäjä
 
-"Käyttäjänä haluan pystyä kirjautumaan palveluun ja selaamaan sekä ilmoittautumaan minua kiinnostaviin tapahtumiin. Tapahtumat joihin olen ilmoittautunut tulisi olla helposti nähtävissä. Haluaisin pystyä etsimään tapahtumia haun perusteella esimerkiksi sen nimestä tai kuvauksesta."
+"Käyttäjänä haluan pystyä kirjautumaan palveluun ja selaamaan sekä ilmoittautumaan minua kiinnostaviin tapahtumiin. Tapahtumat joihin olen ilmoittautunut tulisi olla helposti nähtävissä. Haluaisin pystyä etsimään tapahtumia haun perusteella esimerkiksi sen nimestä tai kuvauksesta ja jättämään kommentteja tai kysymyksiä tapahtuman sivulle."
 
 Käyttäjän toiminnot:
 - ilmoittautuminen tapahtumiin
+- kommentointi tapahtumien yhteyteen
 - kirjautunut käyttäjä tietää omat tapahtumansa
 - tapahtumien haku
 
@@ -23,6 +24,7 @@ Käyttäjän toiminnot:
 Tapahtuma:
 - nimi, kuvaus, sijainti, aika, osallistujamäärä ja rajoitteet
 - yksi kategoria
+- tapahtumalla kommentteja
 - luonti, muokkaus, poisto
 
 Yleiset:
