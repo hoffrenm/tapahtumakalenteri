@@ -28,10 +28,10 @@ Tapahtuma:
 - luonti, muokkaus, poisto
 
 Yleiset:
-- kirjautuminen
+- rekisteröityminen ja kirjautuminen
 - ilmottautuminen tapahtumiin
 - peruminen
-- tieto omista tapahtumista
+- tieto kirjautuneen käyttäjän tapahtumista
 
 Näkymiä:
 - yksittäisen tapahtuman tiedot ja ilmoittautuminen
