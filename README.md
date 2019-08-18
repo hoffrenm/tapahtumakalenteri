@@ -6,7 +6,7 @@ Tapahtumakalenteri on web-sovellus, joka tarjoaa järjestölle, yhdistykselle ta
 
 ## Heroku
 
-[Linkki sovellukseen Herokussa](https://young-ocean-99854.herokuapp.com/events)
+[Linkki sovellukseen Herokussa](https://young-ocean-99854.herokuapp.com)
 
 ### Kirjautumistiedot
 |Tunnus|Salasana|Rooli|
