@@ -61,7 +61,7 @@ def events_all():
 def events_form():
     return render_template("events/new.html", form = EventForm())
 
-@app.route("/events/delete/<event_id>")
+@app.route("/events/delete/<event_id>", methods=["POST"])
 @login_required
 def event_delete(event_id):
     return redirect(url_for("events_all"))
@@ -83,7 +83,7 @@ def events_create():
     db.session().add(e)
     db.session().commit()
   
-    return redirect(url_for("events_index"))
+    return redirect(url_for("events_all"))
 
 @app.route("/events/modify/<int:event_id>", methods=["GET"])
 @login_required
@@ -105,7 +105,7 @@ def event_update(event_id):
     event = Event.query.get(event_id)
     
     if not event:
-        return redirect(url_for("events_index"))
+        return redirect(url_for("events_all"))
 
     # format time and date for prefilled form
     event.time = event.date_time.strftime('%H:%M')
@@ -122,7 +122,7 @@ def event_update(event_id):
 
     db.session().commit()
 
-    return redirect(url_for("events_index"))
+    return redirect(url_for('event_show', event_id=event.id))
 
 @app.route("/events/comment/<event_id>", methods=["POST"])
 def send_comment(event_id):
