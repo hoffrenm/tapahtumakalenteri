@@ -1,77 +1,109 @@
 {% extends "layout.html" %} {% block body %}
-<div class="container border" style="width: 45%;background:white">
-  <div class="row p-2 m-2 justify-content-center">
-    <div class="col-*">
-      <h1>{{ event.name }}</h1>
-    </div>
-  </div>
 
-  <div class="p-2 m-2">
-    <div class="row m-2 justify-content-start" style="font-size: 20px">
-      <div class="col-2"></div>
-      <div class="col-2">
-        <b>Sijainti</b>
-      </div>
-      <div class="col-1"></div>
-      <div class="col-5">
-        {{ event.location }}
+<div class="container rounded h-100 bg-white">
+  <div class="row mb-0 mt-0 align-items-center">
+    <div
+      class="col-3 justify-content-center align-items-center text-center"
+      style="display: flex;width: 12rem;height: 12rem;background: darkslategray"
+    >
+      <div style="font-size: 34px;color: white">
+        <p style="font-size: 80px">{{ event.day }}</p>
+        <p>{{ event.month }}</p>
       </div>
     </div>
 
-    <div class="row m-2 justify-content-start" style="font-size: 20px">
-      <div class="col-2"></div>
-      <div class="col-2">
-        <b>Aika</b>
-      </div>
-      <div class="col-1"></div>
-      <div class="col-7">
-        {{ event.date_time }}
-      </div>
-    </div>
-
-    <div class="row m-2 justify-content-start" style="font-size: 20px">
-      <div class="col-2"></div>
-      <div class="col-2">
-        <b>Osallistujia</b>
-      </div>
-      <div class="col-1"></div>
-      <div class="col-7">
-        {{ event.attendees }}
-        {% if event.attendee_max > 0 %} / {{ event.attendee_max }}
-        {% endif %}
+    <div class="col-9 align-items-center justify-content-center text-center">
+      <div style="font-size: 60px">
+        <p>{{ event.name }}</p>
       </div>
     </div>
   </div>
 
-  <div class="border rounded p-2">
-    <div class="row m-1 p-1 justify-content-start" style="font-size: 20px">
-      <div class="col-*">
-        <h4>Kommentit</h4>
+  <div class="row align-items-center">
+    <div
+      class="col-3 justify-content-center align-items-center text-center"
+      style="display:flex;width: 12rem;height: 12rem;background: rgb(120, 247, 2)"
+    >
+      <div style="position:absolute">
+        <img
+          src="{{ url_for('static', filename='users.svg') }}"
+          style="width: 48px;height: 48px;position:relative"
+        />
+        <div style="font-size: 56px;color: black">
+          {{ event.attendees }}
+          {% if event.attendee_max > 0 %} / {{ event.attendee_max }}
+          {% endif %}
+        </div>
       </div>
     </div>
-  
 
-  {% for comment in comments %}
-  <div class="row m-2 justify-content-start" style="font-size: 20px">
-    <div class="col-*">
-      {{ comment.name }} {{ comment.content }}
+    <div
+      class="col-4 justify-content-center align-items-center text-center"
+      style="font-size: 32px;margin-left: 30px"
+    >
+      <img
+        src="{{ url_for('static', filename='map-location.svg') }}"
+        style="width: 48px;height: 48px;display: inline-block;vertical-align: middle"
+      />
+      {{ event.location }}
+    </div>
+
+    <div
+      class="col-4 justify-content-center align-items-center text-center"
+      style="font-size: 32px"
+    >
+      <span
+        style="display: inline-block;height: 100%;vertical-align: middle"
+      ></span>
+      <img
+        src="{{ url_for('static', filename='calendar.svg') }}"
+        style="width: 48px;height: 48px;display: inline-block"
+      />
+      {{ event.time }}
+      {{ event.date }}
     </div>
   </div>
-  {% endfor %}
 
-  <form method="POST" action="{{ url_for('send_comment', event_id=event.id) }}">
-    <div class="form-group">
-      {{ form.content }}
-      <ul>
-        {% for error in form.content.errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
+  <div class="row">
+    <div class="col-3" style="background-color: whitesmoke"></div>
+    <div class="col-9" style="padding-top:48px;padding-left: 48px">
+      <h3>Kuvaus</h3>
+      {{ event.desscription }}
+      PLACEHOLDEEEER
     </div>
-    <button type="submit" class="btn-sm btn-primary">Lähetä</button>
-  </form>
-
   </div>
+
+  <div class="row">
+    <div class="col-3" style="background-color: whitesmoke"></div>
+    <div class="col-9" style="padding-left: 48px">
+      <h3>Kommentit</h3>
+      {% for comment in comments %}
+      <p>{{ comment.name }}: {{ comment.content }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3" style="background-color: whitesmoke"></div>
+    <div class="col-9" style="padding-left:40px;margin-bottom:1rem">
+      <form
+        method="POST"
+        action="{{ url_for('send_comment', event_id=event.id) }}"
+      >
+        <div class="form-group">
+          {{ form.content }}
+          <ul>
+            {% for error in form.content.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <button type="submit" class="btn-sm btn-primary">Lähetä</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- END OF EVENT CONTAINER -->
+</div>
 
   <div class="row justify-content-center" style="margin-top:30px">
     <div class="col-* m-1 p-1" role="group">

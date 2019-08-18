@@ -16,6 +16,12 @@ def event_show(event_id):
     event = Event.query.get(event_id)
     comments = Event.find_comments_for_event(event_id)
 
+    # format dateinfo for template
+    event.day = datetime.strftime(event.date_time, '%d.')
+    event.month = datetime.strftime(event.date_time,'%B')
+    event.time = datetime.strftime(event.date_time, '%H:%M')
+    event.date = datetime.strftime(event.date_time, '%x')
+
     return render_template("events/event.html", event = event, comments=comments, form=CommentForm())
 
 @app.route("/events/join/<event_id>", methods=["POST"])
