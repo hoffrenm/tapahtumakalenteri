@@ -1,5 +1,39 @@
 {% extends "layout.html" %} {% block body %}
 
+
+<!-- ADMIN TOOLS CONTAINER TODO-->
+<!-- TODO Move to list view -->
+<div class="container border">
+  <div class="row">
+    <div class="col-4">
+      <a href="{{ url_for('event_edit', event_id=event.id) }}">
+        <button type="button" class="btn btn-block btn-info">
+          Tapahtuman yhteenveto
+        </button>
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="{{ url_for('event_edit', event_id=event.id) }}">
+        <button type="button" class="btn btn-block btn-primary">
+          Muokkaa
+        </button>
+      </a>
+    </div>
+    <div class="col-4">
+      <form
+        method="POST"
+        action="{{ url_for('event_delete', event_id=event.id) }}"
+      >
+        <button type="submit" class="btn btn-block btn-danger">
+          Poista
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- END OF ADMIN TOOLS -->
+</div>
+
+<!-- EVENT CONTAINER -->
 <div class="container rounded h-100 bg-white">
   <div class="row mb-0 mt-0 align-items-center">
     <div
@@ -65,23 +99,38 @@
   </div>
 
   <div class="row">
-    <div class="col-3" style="background-color: whitesmoke"></div>
-    <div class="col-9" style="padding-top:48px;padding-left: 48px">
+    <div
+      class="col-3 m-0 p-0 justify-content-center align-items-center text-center"
+      style="width: 12rem;height:4rem;background: whitesmoke"
+    >
+      <form
+        method="POST"
+        action="{{ url_for('event_join', event_id=event.id) }}"
+      >
+        <button type="submit" class="btn btn-lg btn-success btn-block">
+          Osallistu
+        </button>
+      </form>
+    </div>
+    <div class="col-9" style="padding-left: 40px;word-wrap: break-word">
       <h3>Kuvaus</h3>
       {{ event.desscription }}
-      PLACEHOLDEEEER
     </div>
   </div>
 
   <div class="row">
     <div class="col-3" style="background-color: whitesmoke"></div>
-    <div class="col-9" style="padding-left: 48px">
+    <div class="col-9" style="padding-left: 40px">
       <h3>Kommentit</h3>
       {% for comment in comments %}
-      <p>{{ comment.name }}: {{ comment.content }}</p>
+      <p>
+        <b>{{ comment.name }}</b
+        >: {{ comment.content }}
+      </p>
       {% endfor %}
     </div>
   </div>
+
   <div class="row">
     <div class="col-3" style="background-color: whitesmoke"></div>
     <div class="col-9" style="padding-left:40px;margin-bottom:1rem">
@@ -105,18 +154,7 @@
   <!-- END OF EVENT CONTAINER -->
 </div>
 
-  <div class="row justify-content-center" style="margin-top:30px">
-    <div class="col-* m-1 p-1" role="group">
-      <form
-        method="POST"
-        action="{{ url_for('event_join', event_id=event.id) }}"
-      >
-        <button type="submit" class="btn btn-lg btn-success">
-          Osallistu
-        </button>
-      </form>
-    </div>
-    <div class="col-* m-1 p-1">
+<!-- <div class="col-* m-1 p-1">
       <a href="{{ url_for('event_edit', event_id=event.id) }}">
         <button type="button" class="btn btn-lg btn-primary">
           Muokkaa
@@ -132,7 +170,5 @@
           Poista
         </button>
       </form>
-    </div>
-  </div>
-</div>
+    </div> -->
 {% endblock %}

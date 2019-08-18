@@ -40,6 +40,7 @@ def event_join(event_id):
         return "Olet jo ilmottautunut"
 
     event.participants.append(account)
+    event.attendees = event.attendees + 1
 
     db.session().commit()
 
@@ -128,16 +129,11 @@ def send_comment(event_id):
     form = CommentForm(request.form)
     event = Event.query.get(event_id)
 
-    if not form.validate():
-        return render_template("events/event.html", event = event, form=form)
+    if form.validate():
+        comment = Comment(form.content.data, event.id, current_user.id)
 
-    print("EVENT ID: ", event.id)
-    print("USER ID: ", current_user.id)
-
-    comment = Comment(form.content.data, event.id, current_user.id)
-
-    db.session().add(comment)
-    db.session().commit()
+        db.session().add(comment)
+        db.session().commit()
     
     return redirect(url_for('event_show', event_id=event.id))
     
