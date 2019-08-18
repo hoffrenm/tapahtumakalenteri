@@ -47,12 +47,12 @@ def event_join(event_id):
     return redirect(url_for("events_index"))
 
 # TODO landing page view
-@app.route("/events/", methods=["GET"])
-def events_index():
-    return render_template("index.html", events = Event.query.all())
+# @app.route("/events/", methods=["GET"])
+# def events_index():
+#     return render_template("index.html", events = Event.query.all())
 
 # TODO search page view
-@app.route("/events/all/", methods=["GET"])
+@app.route("/events/list/", methods=["GET"])
 def events_all():
     return render_template("events/list.html", events = Event.query.all())
 
