@@ -44,7 +44,7 @@ def event_join(event_id):
 
     db.session().commit()
 
-    return redirect(url_for("events_index"))
+    return redirect(url_for("events_all"))
 
 # TODO landing page view
 # @app.route("/events/", methods=["GET"])
