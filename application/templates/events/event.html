@@ -3,11 +3,11 @@
 
 <!-- ADMIN TOOLS CONTAINER TODO-->
 <!-- TODO Move to list view -->
-<div class="container border">
-  <div class="row">
+<div class="container">
+  <div class="row" style="margin-bottom: 4rem">
     <div class="col-4">
-      <a href="{{ url_for('event_edit', event_id=event.id) }}">
-        <button type="button" class="btn btn-block btn-info">
+      <a>
+        <button type="button" class="btn btn-block btn-warning">
           Tapahtuman yhteenveto
         </button>
       </a>
@@ -103,6 +103,7 @@
       class="col-3 m-0 p-0 justify-content-center align-items-center text-center"
       style="width: 12rem;height:4rem;background: whitesmoke"
     >
+    {% if current_user.is_authenticated %}
       <form
         method="POST"
         action="{{ url_for('event_join', event_id=event.id) }}"
@@ -111,6 +112,7 @@
           Osallistu
         </button>
       </form>
+    {% endif %}
     </div>
     <div class="col-9" style="padding-left: 40px;word-wrap: break-word">
       <h3>Kuvaus</h3>
@@ -131,6 +133,7 @@
     </div>
   </div>
 
+  {% if current_user.is_authenticated %}
   <div class="row">
     <div class="col-3" style="background-color: whitesmoke"></div>
     <div class="col-9" style="padding-left:40px;margin-bottom:1rem">
@@ -150,6 +153,7 @@
       </form>
     </div>
   </div>
+  {% endif %}
 
   <!-- END OF EVENT CONTAINER -->
 </div>
