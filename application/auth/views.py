@@ -49,4 +49,4 @@ def register():
     db.session.add(newAccount)
     db.session.commit()
 
-    return redirect(url_for("events_index"))
+    return redirect(url_for("events_all"))
