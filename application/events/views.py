@@ -46,12 +46,6 @@ def event_join(event_id):
 
     return redirect(url_for("events_all"))
 
-# TODO landing page view
-# @app.route("/events/", methods=["GET"])
-# def events_index():
-#     return render_template("index.html", events = Event.query.all())
-
-# TODO search page view
 @app.route("/events/list/", methods=["GET"])
 def events_all():
     return render_template("events/list.html", events = Event.query.all())
@@ -64,6 +58,11 @@ def events_form():
 @app.route("/events/delete/<event_id>", methods=["POST"])
 @login_required
 def event_delete(event_id):
+    event = Event.query.get(event_id)
+
+    db.session().delete(event)
+    db.session().commit()
+
     return redirect(url_for("events_all"))
 
 @app.route("/events/", methods=["POST"])
