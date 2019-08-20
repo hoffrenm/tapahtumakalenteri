@@ -35,7 +35,7 @@ def event_join(event_id):
         if event.attendees >= event.attendee_max:
             return "Tapahtumassa ei ollut tilaa"
 
-    # check if user has already joined an event
+    # TODO if user has already joined, remove it
     if event in account.attending:
         return "Olet jo ilmottautunut"
 
@@ -44,7 +44,7 @@ def event_join(event_id):
 
     db.session().commit()
 
-    return redirect(url_for("events_all"))
+    return redirect(url_for('event_show', event_id=event.id))
 
 @app.route("/events/list/", methods=["GET"])
 def events_all():
