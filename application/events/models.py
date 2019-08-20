@@ -3,8 +3,8 @@ from application import db
 from sqlalchemy.sql import text
 
 attends = db.Table('participation',
-    db.Column('event_id', db.Integer, db.ForeignKey('event.id')),
-    db.Column('account_id', db.Integer, db.ForeignKey('account.id'))
+    db.Column('event_id', db.Integer, db.ForeignKey('event.id', ondelete="CASCADE")),
+    db.Column('account_id', db.Integer, db.ForeignKey('account.id', ondelete="CASCADE"))
 )
 
 class Event(db.Model):
