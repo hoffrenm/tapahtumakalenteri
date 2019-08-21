@@ -15,32 +15,34 @@ from datetime import datetime
 def event_show(event_id):
     event = Event.query.get(event_id)
     comments = Event.find_comments_for_event(event_id)
+    attendees = Event.participant_count(event_id)
 
     # format dateinfo for template
     event.day = datetime.strftime(event.date_time, '%d.')
     event.month = datetime.strftime(event.date_time,'%B')
     event.time = datetime.strftime(event.date_time, '%H:%M')
-    event.date = datetime.strftime(event.date_time, '%x')
+    event.date = datetime.strftime(event.date_time, '%d.%m.%Y')
 
-    return render_template("events/event.html", event = event, comments=comments, form=CommentForm())
+    return render_template("events/event.html", event = event, attendees=attendees, 
+                            comments=comments, form=CommentForm())
 
 @app.route("/events/join/<event_id>", methods=["POST"])
 @login_required
 def event_join(event_id):
     event = Event.query.get(event_id)
+    attendees = Event.participant_count(event_id)
     account = User.query.get(current_user.id)
 
     # check if event has limit and has space
     if event.attendee_max > 0:
-        if event.attendees >= event.attendee_max:
+        if attendees >= event.attendee_max:
             return "Tapahtumassa ei ollut tilaa"
 
-    # TODO if user has already joined, remove it
+    # TODO if user has already joined, remove it (or make dedicated method for it)
     if event in account.attending:
         return "Olet jo ilmottautunut"
 
     event.participants.append(account)
-    event.attendees = event.attendees + 1
 
     db.session().commit()
 
@@ -48,7 +50,7 @@ def event_join(event_id):
 
 @app.route("/events/list/", methods=["GET"])
 def events_all():
-    return render_template("events/list.html", events = Event.query.all())
+    return render_template("events/list.html", events = Event.find_all_events_attend_and_comment_count())
 
 @app.route("/events/new/")
 @login_required
