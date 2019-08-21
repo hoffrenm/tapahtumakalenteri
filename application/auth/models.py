@@ -13,10 +13,14 @@ class User(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
+    # temporarily save user role at account table
+    role = db.Column(db.String(20))
+
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
+        self.role = "ENDUSER"
   
     def get_id(self):
         return self.id
@@ -29,3 +33,8 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def get_role(self):
+        return self.role
+
+    
