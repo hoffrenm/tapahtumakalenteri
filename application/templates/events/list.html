@@ -2,16 +2,43 @@
 
 <div>
   <h2>Tapahtumat</h2>
-  {% for event in events %}
-  <div class="row p-1 m-1 bg-light position-relative border rounded">
-    <div class="col-1 p-1 m-1">Kuva</div>
-    <div class="col p-1 m-1">{{ event.name }}</div>
-    <div class="col p-1 m-1">{{ event.location }}</div>
-    <div class="col p-1 m-1">{{ event.date_time }}</div>
-    <button type="button" class="btn btn-success">Katso</button>
-    <a class="stretched-link" href="{{ url_for('event_show', event_id=event.id) }}"></a>
+
+  <div class="container">
+    {% for event in events %}
+    <div class="row p-1 m-1 bg-light position-relative border rounded">
+      <a
+        class="stretched-link float-right"
+        href="{{ url_for('event_show', event_id=event.id) }}"
+      ></a>
+      <div class="col-1 align-self-center">Kuva</div>
+      <div class="col-3 align-self-center">{{ event.name }}</div>
+      <div class="col-3 align-self-center">{{ event.location }}</div>
+
+      <div class="col-2 align-self-center" style="font-size: 22px">
+        {% if event.commentCount > 0 %} {{ event.commentCount }} &nbsp; 
+        <img
+          src="{{ url_for('static', filename='chat.svg') }}"
+          style="width: 32px;height: 32px"
+        />
+        {% endif %}
+      </div>
+
+      <div class="col-2 align-self-center" style="font-size: 22px">
+        {% if event.attendeeCount > 0 %} {{ event.attendeeCount }} &nbsp; 
+        <img
+          src="{{ url_for('static', filename='users.svg') }}"
+          style="width: 32px;height: 32px"
+        />
+        {% endif %}
+      </div>
+
+      <button type="button" class="btn btn-lg btn-success float-right">
+        Katso
+      </button>
+      
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 
 {% endblock %}
