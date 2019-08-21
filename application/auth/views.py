@@ -35,7 +35,6 @@ def register():
     form = AccountCreateForm(request.form)
 
     if not form.validate():
-        print(form)
         return render_template("auth/accountform.html", form = form)
 
     user = User.query.filter_by(username=form.username.data).first()
