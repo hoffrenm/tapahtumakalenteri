@@ -7,7 +7,8 @@ from application.comments.forms import CommentForm
 from application.auth.models import User
 
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_required, current_user
+# from flask_login import current_user
+from flask_security import login_required, current_user, roles_accepted, roles_required
 
 from datetime import datetime
 
@@ -28,6 +29,7 @@ def event_show(event_id):
 
 @app.route("/events/join/<event_id>", methods=["POST"])
 @login_required
+@roles_accepted('admin', 'enduser')
 def event_join(event_id):
     event = Event.query.get(event_id)
     attendees = Event.participant_count(event_id)
@@ -54,11 +56,13 @@ def events_all():
 
 @app.route("/events/new/")
 @login_required
+@roles_required('admin')
 def events_form():
     return render_template("events/new.html", form = EventForm())
 
 @app.route("/events/delete/<event_id>", methods=["POST"])
 @login_required
+@roles_required('admin')
 def event_delete(event_id):
     event = Event.query.get(event_id)
 
@@ -69,6 +73,7 @@ def event_delete(event_id):
 
 @app.route("/events/", methods=["POST"])
 @login_required
+@roles_required('admin')
 def events_create():
     form = EventForm(request.form)
 
@@ -88,6 +93,7 @@ def events_create():
 
 @app.route("/events/modify/<int:event_id>", methods=["GET"])
 @login_required
+@roles_required('admin')
 def event_edit(event_id):
     event = Event.query.get(event_id)
     
@@ -100,6 +106,7 @@ def event_edit(event_id):
 
 @app.route("/events/modify/<int:event_id>", methods=["POST"])
 @login_required
+@roles_required('admin')
 def event_update(event_id):
     form = EventModifyForm(request.form)
 
@@ -126,6 +133,8 @@ def event_update(event_id):
     return redirect(url_for('event_show', event_id=event.id))
 
 @app.route("/events/comment/<event_id>", methods=["POST"])
+@login_required
+@roles_accepted('admin', 'enduser')
 def send_comment(event_id):
     form = CommentForm(request.form)
     event = Event.query.get(event_id)
