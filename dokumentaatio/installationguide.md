@@ -55,7 +55,9 @@ Sovellus käynnistyy oletusarvoisesti osoitteeseen http://localhost:5000/
 ```
 $ sqlite3 application/events.db
 
-sqlite> INSERT INTO account (name, username, password, role) VALUES ('admin', 'admin', 'password', 'ADMIN');
+sqlite> INSERT INTO account (name, username, password) VALUES ('admin', 'admin', 'password');
+sqlite> INSERT INTO role (name, description) VALUES ('admin', 'Full permission');
+sqlite> INSERT INTO roles_users (account_id, role_id) VALUES (1, 1);
 ```
 
 Sovellus on nyt käyttövalmis. Sovelluksen kautta luodut tunnukset ovat automaattisesti 'ENDUSER' roolissa.
@@ -97,7 +99,9 @@ $ heroku addons:add heroku-postgresql:hobby-dev
 ```
 $ heroku pg:psql
 
-tietokannan-nimi-12345::DATABASE=> INSERT INTO account (name, username, password, role) VALUES ('admin', 'admin', 'password', 'ADMIN');
+tietokannan-nimi-12345::DATABASE=> INSERT INTO account (name, username, password) VALUES ('admin', 'admin', 'password');
+tietokannan-nimi-12345::DATABASE=> INSERT INTO role (name, description) VALUES ('admin', 'Full permission');
+tietokannan-nimi-12345::DATABASE=> INSERT INTO roles_users (account_id, role_id) VALUES (1, 1);
 ```
 
 Sovellus on nyt käyttövalmis. Sovelluksen kautta luotavat tunnukset ovat automaattisesti 'ENDUSER' roolissa.
