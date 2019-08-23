@@ -1,5 +1,5 @@
-from application import app, db
-from application.auth.models import User
+from application import app, db, user_datastore
+from application.auth.models import User, Role
 from application.auth.forms import LoginForm, AccountCreateForm
 
 from flask import render_template, request, redirect, url_for
@@ -43,9 +43,12 @@ def register():
         form.username.errors.append("Käyttäjätunnus on jo käytössä")
         return render_template("auth/accountform.html", form = form)
 
-    newAccount = User(form.name.data, form.username.data, form.password.data)
+    enduser = Role.query.filter_by(name='enduser').first()
 
-    db.session.add(newAccount)
-    db.session.commit()
+    u = User(form.name.data, form.username.data, form.password.data)
+    u.roles.append(enduser)
+
+    db.session().add(u)
+    db.session().commit()
 
     return redirect(url_for("events_all"))
