@@ -8,7 +8,7 @@ Sovelluksen käyttöönottoon tarvitaan seuraavat komentorivityökalut
 
 Komentorivityökalujen saattaminen käyttökuntoon on suoritusympäristökohtaista ja se jätetään asentajan vastuulle.
 
-Ohjeen koodiblokit kuvastavat käskyjen ajoa terminaalissa projektin juurihakemistossa.
+Ohjeen koodiblokit kuvastavat käskyjen suoritusta terminaalissa projektin juurihakemistossa.
 
 ## Projektin lataaminen paikalliselle koneelle
 
@@ -68,7 +68,7 @@ Tarvitset lisäksi
 1. Luo sovellukselle Heroku-projekti
 
 ```
-$ heroku create <pre><i>nimi</i></pre>
+$ heroku create projektin-nimi
 ```
 
 2. Liitä paikallinen repositorio Heroku-sovellukseen
@@ -97,7 +97,7 @@ $ heroku addons:add heroku-postgresql:hobby-dev
 ```
 $ heroku pg:psql
 
-<pre><i>tietokannan-nimi-12345</i></pre>::DATABASE=>INSERT INTO account (name, username, password, role) VALUES ('admin', 'admin', 'password', 'ADMIN');
+tietokannan-nimi-12345::DATABASE=> INSERT INTO account (name, username, password, role) VALUES ('admin', 'admin', 'password', 'ADMIN');
 ```
 
-Sovellus on nyt käyttövalmis. Sovelluksen kautta tehtävät tunnukset ovat automaattiseti 'ENDUSER' roolissa.
+Sovellus on nyt käyttövalmis. Sovelluksen kautta luotavat tunnukset ovat automaattisesti 'ENDUSER' roolissa.
