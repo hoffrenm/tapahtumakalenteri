@@ -1,6 +1,16 @@
 from application import db
+from flask_security import RoleMixin, UserMixin
 
-class User(db.Model):
+roles_users = db.Table('roles_users',
+    db.Column('account_id', db.Integer(), db.ForeignKey('account.id')),
+    db.Column('role_id', db.Integer(), db.ForeignKey('role.id')))
+
+class Role(db.Model, RoleMixin):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    description = db.Column(db.String(255))
+
+class User(db.Model, UserMixin):
     
     __tablename__ = "account"
 
@@ -13,14 +23,12 @@ class User(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    # temporarily save user role at account table
-    role = db.Column(db.String(20))
+    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
 
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
-        self.role = "ENDUSER"
   
     def get_id(self):
         return self.id
@@ -33,8 +41,4 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
-
-    def get_role(self):
-        return self.role
-
     
