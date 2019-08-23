@@ -46,7 +46,7 @@ class Event(db.Model):
 
         return response
 
-    # Query for list view. Includes information for event and number of 
+    # query for list view. Includes information for event and number of 
     # comments and participants for specific event
     def find_all_events_attend_and_comment_count():
         stmt = text("SELECT Event.id, Event.name, Event.location,"
