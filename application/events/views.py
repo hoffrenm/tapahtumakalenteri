@@ -7,8 +7,8 @@ from application.comments.forms import CommentForm
 from application.auth.models import User
 
 from flask import render_template, request, redirect, url_for, flash
-# from flask_login import current_user
-from flask_security import login_required, current_user, roles_accepted, roles_required
+from flask_login import current_user
+from flask_security import login_required, roles_accepted, roles_required
 
 from datetime import datetime
 
