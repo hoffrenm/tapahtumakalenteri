@@ -10,9 +10,9 @@ Tapahtumakalenteri on web-sovellus, joka tarjoaa järjestölle, yhdistykselle ta
 
 ### Kirjautumistiedot
 |Tunnus|Salasana|Rooli|
-|------|--------|-----|
-|admin |password|-    |
-|      |        |     |
+|-------|--------|-----|
+|admin  |password|admin|
+|enduser|password|enduser|
 
 ## Dokumentaatio
 
