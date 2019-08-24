@@ -3,6 +3,7 @@
 ![tietokantakaavio](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/db.png)
 
 ## Tietokannan luonti SQL-lauseilla
+MySQL-syntaksi
 
 ```sql
 CREATE TABLE `account`
