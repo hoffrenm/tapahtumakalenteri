@@ -1,4 +1,4 @@
-# Tietokanta
+# Tietokanta 24.8.2019
 
 ![tietokantakaavio](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/db.png)
 
