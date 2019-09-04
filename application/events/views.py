@@ -12,8 +12,9 @@ from flask_security import roles_accepted, roles_required, login_required, curre
 
 from datetime import datetime
 
-@login_required
+
 @app.route("/events/show/<event_id>", methods=["GET"])
+@login_required
 def event_show(event_id):
     event = Event.query.get(event_id)
     comments = Event.find_comments_for_event(event_id)
@@ -47,7 +48,7 @@ def event_join(event_id):
         if attendees >= event.attendee_max:
             return redirect(url_for('event_show', event_id=event.id))
 
-    # TODO if user has already joined, remove it (or make dedicated method for it)
+    # cancel participation if user has already joined
     if event in account.attending:
         event.participants.remove(account)
         db.session().commit()
@@ -164,11 +165,14 @@ def admin_list():
 
     return render_template("events/adminlist.html", events = events)
 
+
+@app.route("/events/details/<event_id>", methods=["GET"])
 @login_required
-@app.route("/events/summary/<event_id>", methods=["GET"])
+@roles_required('admin')
 def admin_show(event_id):
     event = Event.query.get(event_id)
     comments = Event.find_comments_for_event(event_id)
-    # participants = Event.find_participants_for_event(event_id)
+    participants = Event.find_participants_for_event(event_id)
 
-    return render_template("events/details.html", event = event, comments=comments)
+    return render_template("events/details.html", event = event, comments=comments, 
+                            participants=participants)
