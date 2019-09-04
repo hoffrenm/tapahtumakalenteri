@@ -18,6 +18,7 @@ def event_show(event_id):
     event = Event.query.get(event_id)
     comments = Event.find_comments_for_event(event_id)
     attendees = Event.participant_count(event_id)
+    account = User.query.get(current_user.id)
 
     # format dateinfo for template
     event.day = datetime.strftime(event.date_time, '%d.')
@@ -25,8 +26,13 @@ def event_show(event_id):
     event.time = datetime.strftime(event.date_time, '%H:%M')
     event.date = datetime.strftime(event.date_time, '%d.%m.%Y')
 
+    if event in account.attending:
+        joined = True
+    else:
+        joined = False
+
     return render_template("events/event.html", event = event, attendees=attendees, 
-                            comments=comments, form=CommentForm())
+                            comments=comments, form=CommentForm(), joined=joined)
 
 @app.route("/events/join/<event_id>", methods=["POST"])
 @login_required
@@ -39,7 +45,7 @@ def event_join(event_id):
     # check if event has limit and has space
     if event.attendee_max > 0:
         if attendees >= event.attendee_max:
-            return "Tapahtumassa ei ollut tilaa"
+            return redirect(url_for('event_show', event_id=event.id))
 
     # TODO if user has already joined, remove it (or make dedicated method for it)
     if event in account.attending:

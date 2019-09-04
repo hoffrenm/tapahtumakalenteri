@@ -70,7 +70,16 @@
       class="col-3 m-0 p-0 justify-content-center align-items-center text-center"
       style="width: 12rem;height:4rem;background: whitesmoke"
     >
-    {% if current_user.is_authenticated %}
+      {% if current_user.is_authenticated %} {% if joined %}
+      <form
+        method="POST"
+        action="{{ url_for('event_join', event_id=event.id) }}"
+      >
+        <button type="submit" class="btn btn-lg btn-danger btn-block">
+          Peru ilmottautuminen
+        </button>
+      </form>
+      {% else %}
       <form
         method="POST"
         action="{{ url_for('event_join', event_id=event.id) }}"
@@ -79,7 +88,7 @@
           Osallistu
         </button>
       </form>
-    {% endif %}
+      {% endif %} {% endif %}
     </div>
     <div class="col-9" style="padding-left: 40px;word-wrap: break-word">
       <h3>Kuvaus</h3>
