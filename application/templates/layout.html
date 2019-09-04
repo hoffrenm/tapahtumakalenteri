@@ -33,34 +33,67 @@
                 Tapahtumat
               </a>
             </li>
-            {% if current_user.is_authenticated %}
+
+            {% if current_user.has_role('enduser') %}
+            <!-- ENDUSER -->
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('events_form') }} ">
+                Omat tapahtumat
+              </a>
+            </li>
+            {% endif %}
+            
+
+            {% if current_user.has_role('admin') %}
+            <!-- ADMIN TOOLS -->
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('events_form') }} ">
                 Lisää tapahtuma
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('admin_list') }} ">
+                Tapahtumien hallinta
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('events_form') }} ">
+                Käyttäjät
+              </a>
+            </li>
             {% endif %}
           </ul>
+
           <div>
             {% if current_user.is_authenticated %}
-            <div style="color:white">
-              Kirjautunut nimellä {{ current_user.name }}.
+            <div>
+              <span class="navbar-text" style="color:white">
+                Kirjautunut nimellä {{ current_user.name }}.
+              </span>
               <a href="{{ url_for('auth_logout') }}">
                 <button class="btn btn-outline-danger">Kirjaudu ulos</button>
               </a>
             </div>
             {% else %}
             <div class="btn-group">
-            <a class="nav-link" role="button" href="{{ url_for('auth_login') }}">
-              <button class="btn btn-outline-success" type="button">
-                <b>Kirjaudu</b>
-              </button>
-            </a>
-            <a class="nav-link" role="button" href="{{ url_for('show_register') }} ">
-              <button class="btn btn-outline-primary" type="button">
-                <b>Rekisteröidy</b>
-              </button>
-            </a>
+              <a
+                class="nav-link"
+                role="button"
+                href="{{ url_for('auth_login') }}"
+              >
+                <button class="btn btn-outline-success" type="button">
+                  <b>Kirjaudu</b>
+                </button>
+              </a>
+              <a
+                class="nav-link"
+                role="button"
+                href="{{ url_for('show_register') }} "
+              >
+                <button class="btn btn-outline-primary" type="button">
+                  <b>Rekisteröidy</b>
+                </button>
+              </a>
             </div>
             {% endif %}
           </div>

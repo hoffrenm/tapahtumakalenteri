@@ -7,11 +7,12 @@ from application.comments.forms import CommentForm
 from application.auth.models import User
 
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import current_user
-from flask_security import login_required, roles_accepted, roles_required
+# from flask_login import current_user
+from flask_security import roles_accepted, roles_required, login_required, current_user
 
 from datetime import datetime
 
+@login_required
 @app.route("/events/show/<event_id>", methods=["GET"])
 def event_show(event_id):
     event = Event.query.get(event_id)
@@ -42,7 +43,9 @@ def event_join(event_id):
 
     # TODO if user has already joined, remove it (or make dedicated method for it)
     if event in account.attending:
-        return "Olet jo ilmottautunut"
+        event.participants.remove(account)
+        db.session().commit()
+        return redirect(url_for('event_show', event_id=event.id))
 
     event.participants.append(account)
 
@@ -146,4 +149,20 @@ def send_comment(event_id):
         db.session().commit()
     
     return redirect(url_for('event_show', event_id=event.id))
-    
+
+@app.route("/events/details", methods=["GET"])
+@login_required
+@roles_required('admin')
+def admin_list():
+    events = Event.find_all_events_attend_and_comment_count()
+
+    return render_template("events/adminlist.html", events = events)
+
+@login_required
+@app.route("/events/summary/<event_id>", methods=["GET"])
+def admin_show(event_id):
+    event = Event.query.get(event_id)
+    comments = Event.find_comments_for_event(event_id)
+    # participants = Event.find_participants_for_event(event_id)
+
+    return render_template("events/details.html", event = event, comments=comments)
