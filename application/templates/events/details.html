@@ -1,0 +1,49 @@
+{% extends "layout.html" %} {% block body %}
+
+<div>
+  <h1>Tiedot</h1>
+  <p>{{ event.name }}</p>
+  <p>{{ event.location }}</p>
+  <p>{{ event.date_time }}</p>
+
+  <h2>Osallistujat</h2>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+          Nimi
+        </th>
+      </tr>
+    </thead>
+    {% for person in participants %}
+    <tr>
+      <td>{{ person.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <br>
+  <br>
+
+  <h2>Tapahtuman kommentit</h2>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Kirjoittaja</th>
+        <th>Kommentti</th>
+        <th>Ajankohta</th>
+      </tr>
+    </thead>
+    {% for comment in comments %}
+    <tr>
+      <td>{{ comment.name }}</td>
+      <td>{{ comment.content }}</td>
+      <td>{{ comment.date }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

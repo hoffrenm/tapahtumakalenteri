@@ -1,0 +1,28 @@
+{% extends "layout.html" %} {% block body %}
+
+<div>
+    <table class="table">
+    <th>Nimi</th>
+    <th>Paikka </th>
+    <th>Aika</th>
+    <th>Osallistujia</th>
+    <th>Kommentteja</th>
+
+    {% for event in events %}
+    <tr>
+        <td>{{ event.name }}</td>
+        <td>{{ event.location }}</td>
+        <td>{{ event.date_time }}</td>
+        <td>{{ event.attendCount }}</td>
+        <td>{{ event.commentCount }}</td>
+        <td><a href="{{ url_for('admin_show', event_id=event.id) }}">Yhteenveto</a></td>
+        <td><a href="{{ url_for('event_edit', event_id=event.id) }}">Muokkaa</a></td>
+        <td><a href="{{ url_for('event_delete', event_id=event.id) }}">Poista</a></td>
+    </tr>
+
+    {% endfor %}
+    </table>
+
+</div>
+
+{% endblock %}

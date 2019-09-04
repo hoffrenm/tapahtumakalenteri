@@ -1,40 +1,5 @@
 {% extends "layout.html" %} {% block body %}
 
-
-<!-- ADMIN TOOLS CONTAINER TODO-->
-<!-- TODO Move to list view -->
-{% if current_user.is_authenticated %}
-<div class="container">
-  <div class="row" style="margin-bottom: 4rem">
-    <div class="col-4">
-      <a>
-        <button type="button" class="btn btn-block btn-warning">
-          Tapahtuman yhteenveto
-        </button>
-      </a>
-    </div>
-    <div class="col-4">
-      <a href="{{ url_for('event_edit', event_id=event.id) }}">
-        <button type="button" class="btn btn-block btn-primary">
-          Muokkaa
-        </button>
-      </a>
-    </div>
-    <div class="col-4">
-      <form
-        method="POST"
-        action="{{ url_for('event_delete', event_id=event.id) }}"
-      >
-        <button type="submit" class="btn btn-block btn-danger">
-          Poista
-        </button>
-      </form>
-    </div>
-  </div>
-  <!-- END OF ADMIN TOOLS -->
-</div>
-{% endif %}
-
 <!-- EVENT CONTAINER -->
 <div class="container rounded h-100 bg-white">
   <div class="row mb-0 mt-0 align-items-center">
