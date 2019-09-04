@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for, redirect
 app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
@@ -31,6 +31,7 @@ from application.comments import models
 from application.events import models
 
 from application.auth.models import User, Role
+from application.auth.forms import LoginForm
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
@@ -42,6 +43,10 @@ from application.events import views
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+@app.login_manager.unauthorized_handler
+def unauth_handler():
+    return redirect(url_for('auth_login'))
 
 try:
     db.create_all()
