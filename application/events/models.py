@@ -46,6 +46,21 @@ class Event(db.Model):
 
         return response
 
+    def find_participants_for_event(event_id):
+        stmt = text("SELECT Account.name"
+                    " FROM Account"
+                    " LEFT JOIN Participation ON Participation.account_id = Account.id"
+                    " WHERE Participation.event_id = :event_id").params(event_id=event_id)
+        
+        res = db.engine.execute(stmt)
+
+        response = []
+
+        for row in res:
+            response.append({"name":row[0]})
+
+        return response
+
     # query for list view. Includes information for event and number of 
     # comments and participants for specific event
     def find_all_events_attend_and_comment_count():
