@@ -1,4 +1,4 @@
-# Käyttöohje
+# Käyttöohjeet
 
 ### Sovelluksen aloitusnäkymä kirjautumattomalle käyttäjälle
 ![Sovelluksen aloitussivu](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-1.png)
@@ -8,23 +8,23 @@ jotka eivät ole kirjautuneet sovellukseen.
 
 ## Pääkäyttäjän ohje
 
-### Pääkäyttäjän oletusnäkymä
+#### Pääkäyttäjän oletusnäkymä
 ![Pääkäyttäjän näkymä](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-2.png)
 
-### Tapahtuman lisääminen
+#### Tapahtuman lisääminen
 Tapahtuman lisäämiseen siirrytään yläpalkin "Lisää tapahtuma"-painikkeen kautta.
 
 ![Tapahtuman lisääminen](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-4.png)
 
 Tapahtuman tiedot syötetään nimettyihin kenttiin ja lopuksi painetaan "Lisää tapahtuma"-painiketta.
 
-### Tapahtumien tarkastelu
+#### Tapahtumien tarkastelu
 Kaikki tallennetut tapahtumat saa näkyviin "Tapahtumien hallinta" linkin kautta.
 
 ![Tapahtumien koonti](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-3.png)
 Jokaisen tapahtuman tietojen perässä ovat painikkeet tapahtuman muokkaamiseen, poistamiseen sekä siirtymiseen yhteenvetoon.
 
-### Yksittäisen tapahtuman yhteenveto
+#### Yksittäisen tapahtuman yhteenveto
 ![Tapahtuman yhteenveto](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-5.png)
 Tapahtuman yhteenvedosta löytyvät lista ilmottautuneista käyttäjistä sekä tapahtumaan lähetetyistä kommenteista. Pääkäyttäjällä 
 oikeus muokata ja poistaa kommentteja niihin liitettyjen painikkeiden kautta.
@@ -35,7 +35,7 @@ Tavallinen käyttäjä voi selata tapahtumatarjontaa valikon "Tapahtumat"-painik
 ![Tapahtumalista](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/2-3.png)
 Tapahtuman klikkaaminen mistä tahansa avaa tapahtuman tiedot.
 
-### Tapahtumanäkymä
+#### Tapahtumanäkymä
 ![Tapahtumanäkymä](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/2-1.png)
 Ilmottautuminen tapahtumaan onnistuu "osallistu" painiketta klikkaamalla.
 
