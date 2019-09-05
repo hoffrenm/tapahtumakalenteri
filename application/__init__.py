@@ -39,6 +39,7 @@ security = Security(app, user_datastore)
 from application import views
 from application.auth import views
 from application.events import views
+from application.comments import views
 
 @login_manager.user_loader
 def load_user(user_id):
