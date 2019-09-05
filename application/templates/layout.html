@@ -37,7 +37,7 @@
             {% if current_user.has_role('enduser') %}
             <!-- ENDUSER -->
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('events_form') }} ">
+              <a class="nav-link" href="{{ url_for('events_own') }} ">
                 Omat tapahtumat
               </a>
             </li>
