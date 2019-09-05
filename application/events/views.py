@@ -68,6 +68,13 @@ def events_all():
 def events_form():
     return render_template("events/new.html", form = EventForm())
 
+@app.route("/events/own/")
+@login_required
+def events_own():
+    events = Event.find_all_events_attend_and_comment_count_for_user(current_user.id)
+
+    return render_template("events/list.html", events=events)
+
 @app.route("/events/delete/<event_id>", methods=["POST"])
 @login_required
 @roles_required('admin')
