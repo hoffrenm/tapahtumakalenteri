@@ -32,7 +32,7 @@ oikeus muokata ja poistaa kommentteja niihin liitettyjen painikkeiden kautta.
 ## Peruskäyttäjän ohje
 Tavallinen käyttäjä voi selata tapahtumatarjontaa valikon "Tapahtumat"-painikkeen kautta.
 
-![]()
+![Tapahtumalista](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/2-3.png)
 Tapahtuman klikkaaminen mistä tahansa avaa tapahtuman tiedot.
 
 ### Tapahtumanäkymä
@@ -40,6 +40,6 @@ Tapahtuman klikkaaminen mistä tahansa avaa tapahtuman tiedot.
 Ilmottautuminen tapahtumaan onnistuu "osallistu" painiketta klikkaamalla.
 
 ![Tapahtumanäkymä2](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/2-2.png)
-Ilmottautuneelle käyttäjälle osallistuspainike korvaantuu perumispainikkeella, jota painamalla käyttäjä peruu osallistumisensa. 
+Ilmoittautuneelle käyttäjälle osallistuspainike korvaantuu perumispainikkeella, jota painamalla käyttäjä peruu osallistumisensa. 
 Kommentointi tapahtuu syöttämällä tapahtumanäkymän alalaidassa olevaan tekstikenttään kommentti ja painamalla "Lähetä"-painiketta. 
 Viestin kirjoittanut käyttäjä voi muokata viestiään sekä poistaa sen kommentin perässä sijaitsevista painikkeista.
