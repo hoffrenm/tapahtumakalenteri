@@ -2,9 +2,9 @@
 
 <div>
   <h1>Tiedot</h1>
-  <p>{{ event.name }}</p>
-  <p>{{ event.location }}</p>
-  <p>{{ event.date_time }}</p>
+  <h5>{{ event.name }}</h5>
+  <h5>{{ event.location }}</h5>
+  <h5>{{ event.date_time }}</h5>
 
   <h2>Osallistujat</h2>
 
@@ -23,8 +23,8 @@
     {% endfor %}
   </table>
 
-  <br>
-  <br>
+  <br />
+  <br />
 
   <h2>Tapahtuman kommentit</h2>
 
@@ -41,6 +41,19 @@
       <td>{{ comment.name }}</td>
       <td>{{ comment.content }}</td>
       <td>{{ comment.date }}</td>
+      <td>
+        <a href="{{ url_for('comment_edit', comment_id=comment.id) }}">
+          <button class="btn btn-sm btn-primary">Muokkaa</button>
+        </a>
+      </td>
+      <td>
+        <form
+          method="POST"
+          action="{{ url_for('comment_delete', comment_id=comment.id) }}"
+        >
+          <button class="btn btn-sm btn-danger" type="submit">Poista</button>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </table>
