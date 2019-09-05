@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% block body %}
+<div>
+    <h2>Kommentin muokkaus</h2>
+    <p>Kirjoittaja: </p>
+  <form method="POST" action="{{ url_for('comment_edit', comment_id=comment.id) }}">
+    <div class="form-group">
+        {{ form.content.label }}
+        {{ form.content(value=comment.content) }}
+    </div>
+    <button class="btn btn-success" type="submit">
+        Tallenna
+    </button>
+  </form>
+</div>
+
+{% endblock %}

@@ -6,3 +6,9 @@ class CommentForm(FlaskForm):
     
     class Meta:
         csrf = False
+
+class CommentEditForm(FlaskForm):
+    content = StringField("", [validators.Length(min=1)], render_kw={"class": "form-control"})
+    
+    class Meta:
+        csrf = False
