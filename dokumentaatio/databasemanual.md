@@ -1,4 +1,4 @@
-# Tietokanta 24.8.2019
+# Tietokanta 6.9.2019
 
 Tietokanta koostuu neljästä entiteettejä kuvaavista tauluista (Event, Account, Comment, Role) sekä kahdesta liitostaulusta (Roles_users, Participation).
 
