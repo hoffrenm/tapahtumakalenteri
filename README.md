@@ -18,6 +18,8 @@ Tapahtumakalenteri on web-sovellus, joka tarjoaa järjestölle, yhdistykselle ta
 
 [Asennusohje](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/installationguide.md)
 
+[Käyttöohje](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/userguide.md)
+
 [Käyttäjätarinat](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/userstories.md)
 
 [Tietokannan kuvaus ja luonti](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/databasemanual.md)

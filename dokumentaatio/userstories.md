@@ -2,16 +2,15 @@
 
 ## Ylläpitäjä
 
-"Ylläpitäjänä tahdon pystyä luomaan tapahtumia, johon käyttäjät voivat ilmoittautua. Tapahtumista tulee näkyä sen nimi, kuvaus, sijainti, aika ja muita tietoja kuten ilmoittautuneiden määrä ja käyttäjien kommentit tapahtumaan liittyen. Tapahtuma liittyy tiettyyn kategoriaan. Käyttäjille ei ilmoittauneita näytetä mutta tapahtuman tekijän pitäisi saada käyttöönsä kaikkien ilmottautuneiden tiedot. Tapahtuman tietoja pitää pystyä muokkaamaan, poistamaan ja asettamaan raja osallistujamäärille. Pääkäyttäjänä haluan myös pystyä poistamaan ilmottautuneita käyttäjiä tapahtumista."
+"Ylläpitäjänä tahdon pystyä luomaan tapahtumia, johon käyttäjät voivat ilmoittautua. Tapahtumista tulee näkyä sen nimi,  sijainti, aika ja muita tietoja kuten ilmoittautuneiden määrä ja käyttäjien kommentit tapahtumaan liittyen. Käyttäjille ei ilmoittauneita näytetä mutta tapahtuman tekijän pitäisi saada näkyviin kaikkien ilmottautuneiden nimet. Tapahtuman tietoja pitää pystyä muokkaamaan, poistamaan ja asettamaan raja osallistujamäärille..
 
 Pääkäyttäjän toiminnot:
 - tapahtumien luonti, muokkaus, poisto
 - pääsy tapahtumien yhteenvetoihin
-- ilmoittautuneiden hallinta
 
 ## Käyttäjä
 
-"Käyttäjänä haluan pystyä kirjautumaan palveluun ja selaamaan sekä ilmoittautumaan minua kiinnostaviin tapahtumiin. Tapahtumat joihin olen ilmoittautunut tulisi olla helposti nähtävissä. Haluaisin pystyä etsimään tapahtumia haun perusteella esimerkiksi sen nimestä tai kuvauksesta ja jättämään kommentteja tai kysymyksiä tapahtuman sivulle."
+"Käyttäjänä haluan pystyä kirjautumaan palveluun ja selaamaan sekä ilmoittautumaan minua kiinnostaviin tapahtumiin. Tapahtumat joihin olen ilmoittautunut tulisi olla helposti nähtävissä. Haluaisin pystyä etsimään tapahtumia haun perusteella esimerkiksi sen nimestä ja jättämään kommentteja tai kysymyksiä tapahtuman sivulle."
 
 Käyttäjän toiminnot:
 - ilmoittautuminen tapahtumiin
@@ -22,8 +21,7 @@ Käyttäjän toiminnot:
 ## Toiminnallisuus käyttäjätarinoiden pohjalta
 
 Tapahtuma:
-- nimi, kuvaus, sijainti, aika, osallistujamäärä ja rajoitteet
-- yksi kategoria
+- nimi, sijainti, aika, osallistujamäärä ja rajoitteet
 - tapahtumalla kommentteja
 - luonti, muokkaus, poisto
 
