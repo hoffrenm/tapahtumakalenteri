@@ -1,6 +1,5 @@
 {% extends "layout.html" %} {% block body %}
 
-<!-- EVENT CONTAINER -->
 <div class="container rounded h-100 bg-white">
   <div class="row mb-0 mt-0 align-items-center">
     <div
@@ -70,7 +69,7 @@
       class="col-3 m-0 p-0 justify-content-center align-items-center text-center"
       style="width: 12rem;height:4rem;background: whitesmoke"
     >
-      {% if current_user.is_authenticated %} {% if joined %}
+      {% if current_user.is_authenticated %} {% if userHasjoined %}
       <form
         method="POST"
         action="{{ url_for('event_join', event_id=event.id) }}"
@@ -90,21 +89,36 @@
       </form>
       {% endif %} {% endif %}
     </div>
-    <div class="col-9" style="padding-left: 40px;word-wrap: break-word">
-      <h3>Kuvaus</h3>
-      {{ event.desscription }}
-    </div>
   </div>
 
   <div class="row">
     <div class="col-3" style="background-color: whitesmoke"></div>
     <div class="col-9" style="padding-left: 40px">
       <h3>Kommentit</h3>
+      <hr>
       {% for comment in comments %}
-      <p>
-        <b>{{ comment.name }}</b
-        >: {{ comment.content }}
-      </p>
+      <div class="row">
+        <div class="col-8">
+          <b>{{ comment.name }}</b
+          >: {{ comment.content }}
+        </div>
+
+        {% if current_user.id == comment.accountId %}
+        <div class="col-3 btn-group">
+          <a href="{{ url_for('comment_edit', comment_id=comment.id) }}">
+            <button class="btn btn-sm btn-primary">Muokkaa</button>
+          </a>
+
+          <form
+            method="POST"
+            action="{{ url_for('comment_delete', comment_id=comment.id) }}"
+          >
+            <button class="btn btn-sm btn-danger" type="submit">Poista</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+      <br />
       {% endfor %}
     </div>
   </div>
@@ -130,25 +144,5 @@
     </div>
   </div>
   {% endif %}
-
-  <!-- END OF EVENT CONTAINER -->
 </div>
-
-<!-- <div class="col-* m-1 p-1">
-      <a href="{{ url_for('event_edit', event_id=event.id) }}">
-        <button type="button" class="btn btn-lg btn-primary">
-          Muokkaa
-        </button>
-      </a>
-    </div>
-    <div class="col-* m-1 p-1">
-      <form
-        method="POST"
-        action="{{ url_for('event_delete', event_id=event.id) }}"
-      >
-        <button type="submit" class="btn btn-lg btn-danger">
-          Poista
-        </button>
-      </form>
-    </div> -->
 {% endblock %}
