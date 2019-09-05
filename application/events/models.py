@@ -29,23 +29,6 @@ class Event(db.Model):
         self.name = name
         self.location = location
 
-    # find comments and authors for single event view
-    def find_comments_for_event(event_id):
-        stmt = text("SELECT Account.name, Comment.content, Comment.date_created"
-                    " FROM Comment"
-                    " LEFT JOIN Account ON Comment.account_id = Account.id"
-                    " WHERE Comment.event_id = :event_id"
-                    " ORDER BY Comment.date_created ASC").params(event_id=event_id)
-        
-        res = db.engine.execute(stmt)
-
-        response = []
-
-        for row in res:
-            response.append({"name":row[0], "content":row[1], "date":row[2]})
-
-        return response
-
     def find_participants_for_event(event_id):
         stmt = text("SELECT Account.name"
                     " FROM Account"
