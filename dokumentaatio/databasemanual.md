@@ -3,7 +3,7 @@
 Tietokanta koostuu neljästä entiteettejä kuvaavista tauluista (Event, Account, Comment, Role) sekä kahdesta liitostaulusta (Roles_users, Participation).
 
 Tietokanta sisältää 2 monesta moneen suhdetta:
-- Tapahtuman (Event) ja käyttäjän (Account) välinen suhde kuvaa käyttäjän osallistumista (Participation) tapahtumaan; käyttäjä voi liittyä moneen tapahtumaan ja yksittäiseen tapahtumaan voi osallistua useita eri käyttäjiä.
+- Tapahtuman (Event) ja käyttäjän (Account) välinen suhde kuvaa käyttäjän osallistumista tapahtumaan; käyttäjä voi liittyä moneen tapahtumaan ja yksittäiseen tapahtumaan voi osallistua useita eri käyttäjiä. Osallistumista kuvaavat avainparit tallennetaan liitostauluun (Participation).
 - Käyttäjällä (Account) voi olla useita rooleja (Role) ja sama rooli voi kuulua usealle käyttäjälle. Roolit tallennetaan käyttäjän ja roolin väliseen liitostauluun (Roles-users).
 
 
