@@ -26,8 +26,16 @@ Jokaisen tapahtuman tietojen perässä ovat painikkeet tapahtuman muokkaamiseen,
 
 #### Yksittäisen tapahtuman yhteenveto
 ![Tapahtuman yhteenveto](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-5.png)
+
 Tapahtuman yhteenvedosta löytyvät lista ilmottautuneista käyttäjistä sekä tapahtumaan lähetetyistä kommenteista. Pääkäyttäjällä 
 oikeus muokata ja poistaa kommentteja niihin liitettyjen painikkeiden kautta.
+
+#### Käyttäjien yhteenveto
+Käyttäjien yhteenvetoon pääsee valikkopalkin "Käyttäjät" linkin kautta.
+
+![Käyttäjäyhteenveto](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/1-6.png)
+
+Pääkäyttäjä näkee sovellukseen rekisteröityneet käyttäjät ja heidän ilmoittautumisten ja kommenttien kokonaismäärät. Toistaiseksi sovellus ei tarjoa käyttäjähallintaa.
 
 ## Peruskäyttäjän ohje
 Tavallinen käyttäjä voi selata tapahtumatarjontaa valikon "Tapahtumat"-painikkeen kautta.
