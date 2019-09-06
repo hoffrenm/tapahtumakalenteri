@@ -47,9 +47,3 @@ def comment_delete(comment_id):
         return redirect(url_for('event_show', event_id=comment.event_id))
     
     return redirect(url_for('events_all'))
-
-@app.route("/comments/new/")
-@login_required
-@roles_required('admin')
-def comment_edit_form():
-    return render_template("events/new.html", form = EventForm())
