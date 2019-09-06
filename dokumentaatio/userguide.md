@@ -48,6 +48,9 @@ Tapahtuman klikkaaminen mistä tahansa avaa tapahtuman tiedot.
 Ilmottautuminen tapahtumaan onnistuu "osallistu" painiketta klikkaamalla.
 
 ![Tapahtumanäkymä2](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/2-2.png)
-Ilmoittautuneelle käyttäjälle osallistuspainike korvaantuu perumispainikkeella, jota painamalla käyttäjä peruu osallistumisensa. 
+Ilmoittautuneelle käyttäjälle osallistumispainike korvaantuu perumispainikkeella, jota painamalla käyttäjä peruu osallistumisensa. 
+
 Kommentointi tapahtuu syöttämällä tapahtumanäkymän alalaidassa olevaan tekstikenttään kommentti ja painamalla "Lähetä"-painiketta. 
 Viestin kirjoittanut käyttäjä voi muokata viestiään sekä poistaa sen kommentin perässä sijaitsevista painikkeista.
+
+"Omat tapahtumat" sivu näyttää käyttäjälle vain ne tapahtumat, joihin hän on ilmoittautunut.
