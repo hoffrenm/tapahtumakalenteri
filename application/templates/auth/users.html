@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {% block body %}
+
+<div>
+  <h2>Sovelluksen käyttäjät</h2>
+
+  <br>
+  <h4>Käyttäjiä yhteensä: {{ userCount }}</h4>
+  <br>
+
+  <table class="table">
+      <thead class="thead-light">
+        <tr>
+            <th>Nimi</th>
+            <th>Ilmoittautumisia</th>
+            <th>Kirjoitettuja kommentteja</th>
+        </tr>
+      </thead>
+
+    {% for account in users %}
+      <tr>
+        <td>{{ account.name }}</td>
+        <td>{{ account.eventCount }}</td>
+        <td>{{ account.commentCount }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <table class="table">
+      <thead class="thead-light">
+        <tr>
+            <th>Rooli</th>
+            <th>Määrä</th>
+        </tr>
+      </thead>
+
+    {% for role in roles %}
+      <tr>
+        <td>{{ role.name }}</td>
+        <td>{{ role.roleCount }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+</div>
+
+{% endblock %}
