@@ -11,7 +11,6 @@ Tietokanta sisältää 2 monesta moneen suhdetta:
 
 
 ## Tietokannan luonti SQL-lauseilla
-MySQL-syntaksi
 
 ```sql
 CREATE TABLE role (
