@@ -16,6 +16,10 @@ Kysely hakee tietokannasta kaikkien tapahtumien id:t, nimet ja sijainnit, yhdist
 laskee niiden summan ja ryhmittelee ne yksittäisen tapahtuman mukaan sekä järjestää tulokset tapahtuman ajankohdan mukaisesti 
 nousevaan järjestykseen.
 
+Tulos
+
+![SQL1](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/3-1.png)
+
 ### Tapahtumien listaus, joihin käyttäjä on ilmoittautunut
 Kuten edellä, mutta nyt käyttäjä haluaa nähdä vain ne tapahtumat joihin on itse ilmoittanut osallistuvansa.
 
@@ -51,6 +55,10 @@ SELECT Account.name, COUNT(DISTINCT Comment.id), COUNT(DISTINCT Participation.ev
 
 Kysely hakee tietokannasta käyttäjien nimet, laskee käyttäjän ilmoittaumiset tapahtumiin sekä kommenttien määrät ja ryhmittelee ne yksittäisen käyttäjän mukaan.
 
+Tulos
+
+![SQL3](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/3-2.png)
+
 ### Sovelluksessa olevat roolit ja niihin liittyvien käyttäjien määrä
 Pääkäyttäjä haluaa tietää kuinka monta käyttäjää sovelluksen eri rooleilla on.
 
@@ -62,6 +70,8 @@ SELECT Role.name, COUNT(Roles_users.account_id)
 ```
 
 Yhteenvetokysely hakee sovelluksen rooleihin liittyvät tunnukset liitostaulusta ja laskee eri rooleille summan siihen kuuluvista käyttäjistä.
+
+![SQL4](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/3-3.png)
 
 
 # CRUD - Listaus, lisäys, muokkaus ja poisto
