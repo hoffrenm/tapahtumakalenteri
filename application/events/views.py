@@ -144,7 +144,7 @@ def event_update(event_id):
 
     db.session().commit()
 
-    return redirect(url_for('event_show', event_id=event.id))
+    return redirect(url_for('admin_list'))
 
 @app.route("/events/comment/<event_id>", methods=["POST"])
 @login_required
