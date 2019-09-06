@@ -65,13 +65,19 @@ class Event(db.Model):
 
         return response
 
-    # identical to query above but limit events for those user has joined
     def find_all_events_attend_and_comment_count_for_user(account_id):
         stmt = text("SELECT Event.id, Event.name, Event.location,"
                     " COUNT(DISTINCT Comment.id), COUNT(DISTINCT Participation.account_id)"
                     " FROM Event"
                     " LEFT JOIN Comment ON Comment.event_id = Event.id"
                     " LEFT JOIN Participation ON Participation.event_id = Event.id"
+                    " WHERE Participation.event_id IN "
+                    " ( "
+                    "   SELECT Event.id "
+                    "       FROM Event "
+                    "       LEFT JOIN Participation ON Participation.event_id = Event.id "
+                    "       WHERE Participation.account_id = :account_id "
+                    " ) "
                     " GROUP BY Event.id"
                     " ORDER BY Event.date_time ASC").params(account_id=account_id)
 
