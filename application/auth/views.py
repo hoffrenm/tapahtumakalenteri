@@ -5,6 +5,8 @@ from application.auth.forms import LoginForm, AccountCreateForm
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 
+from flask_security import roles_accepted, roles_required, login_required, current_user
+
 @app.route("/auth/login", methods = ["GET", "POST"])
 def auth_login():
     if request.method == "GET":
@@ -52,3 +54,13 @@ def register():
     db.session().commit()
 
     return redirect(url_for("events_all"))
+
+@app.route("/users", methods = ["GET"])
+@login_required
+@roles_required('admin')
+def users():
+    users = User.find_users_comments_and_participations()
+    roles = User.find_roles_count()
+    userCount = db.session.query(User).count()
+
+    return render_template("auth/users.html", users=users, userCount=userCount, roles=roles)
