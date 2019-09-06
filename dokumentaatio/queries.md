@@ -33,13 +33,17 @@ SELECT Event.id, Event.name, Event.location, COUNT(DISTINCT Comment.id), COUNT(D
         SELECT Event.id
             FROM Event
             LEFT JOIN Participation ON Participation.event_id = Event.id
-            WHERE Participation.account_id = :account_id
+            WHERE Participation.account_id = ?
     )
     GROUP BY Event.id
-    ORDER BY Event.date_time ASC").params(account_id=account_id)
+    ORDER BY Event.date_time ASC
 ```
 
-Identtinen kysely ylläolevan kanssa mutta kyselyssä suoritetaan alikysely niille tapahtumille joihin käyttäjä on ilmoittautunut ja hakutuloksista rajataan niiden perusteella muut tapahtumat pois.
+Identtinen kysely ylläolevan kanssa mutta kyselyssä suoritetaan alikysely niille tapahtumille joihin käyttäjä on ilmoittautunut ja hakutuloksista rajataan niiden perusteella muut tapahtumat pois. (Huom. parametrisoitu kysely)
+
+Tulos
+
+![SQL2](https://github.com/hoffrenm/tapahtumakalenteri/blob/master/dokumentaatio/3-4.png)
 
 
 ### Käyttäjien listaus
