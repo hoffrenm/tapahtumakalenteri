@@ -166,8 +166,9 @@ def send_comment(event_id):
 @roles_required('admin')
 def admin_list():
     events = Event.find_all_events_attend_and_comment_count()
+    eventCount = db.session().query(Event).count()
 
-    return render_template("events/adminlist.html", events = events)
+    return render_template("events/adminlist.html", events = events, eventCount=eventCount)
 
 @app.route("/events/details/<event_id>", methods=["GET"])
 @login_required
